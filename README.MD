@@ -1,49 +1,76 @@
-# SOVEREIGN HOTEL 
+# InnSight AI
 
- This is a special web app for Sovereign Hotel.
+Welcome to InnSight AI, your all-in-one solution for managing and optimizing your hotel business. InnSight AI is a powerful and intuitive application designed specifically for hotel employees, offering a range of features and tools to streamline your operations, enhance guest experiences, and boost your revenue.
 
+### Overview
+This repository contains the source code and documentation for a comprehensive hotel management application designed for use by hotel employees. The application provides a range of features to streamline hotel operations and enhance the guest experience. 
 
-## Features
+### Features
+1. **User Management**
+   - Hotel employees must log in to access the application.
+   - New users can only be registered within the application to ensure that only authorized hotel employees have accounts.
+   - Users can upload an avatar, change their name, and update their password.
 
-* Users of the app are hotel employees. They need to be logged into the application to perform tasks
-* New users can only be signed up inside the applications (to guarantee that only actual hotel employees can get accounts)
-* Users should be able to upload an avatar, and change their name and password
-* App needs a table view with all cabins, showing the cabin photo, name, capacity, price, and current discount
-* Users should be able to update or delete a cabin, and to create new cabins (including uploading a photo)
-* App needs a table view with all bookings, showing arrival and departure dates, status, and paid amount, as well as cabin and guest data
-* The booking status can be “unconfirmed” (booked but not yet checked in), “checked in”, or “checked out”. The table should be filterable
-    by this important status
-* Other booking data includes: number of guests, number of nights, guest observations, whether they booked breakfast, breakfast price
-* Users should be able to delete, check in, or check out a booking as the guest arrives (no editing necessary for now)
-* Bookings may not have been paid yet on guest arrival. Therefore, on check in, users need to accept payment (outside the app), and
-    then confirm that payment has been received (inside the app)
-* On check in, the guest should have the ability to add breakfast for the entire stay, if they hadn’t already
-* Guest data should contain: full name, email, national ID, nationality, and a country flag for easy identification
-* The initial app screen should be a dashboard, to display important information for the last 7, 30, or 90 days:
-* A list of guests checking in and out on the current day. Users should be able to perform these tasks from here
-* Statistics on recent bookings, sales, check ins, and occupancy rate
-* A chart showing all daily hotel sales, showing both “total” sales and “extras” sales (only breakfast at the moment)
-* A chart showing statistics on stay durations, as this is an important metric for the hotel
-* Users should be able to define a few application-wide settings: breakfast price, min and max nights/booking, max guests/booking
-* Theme
+2. **Cabin Management**
+   - A table view displays all cabins, showing cabin photos, names, capacity, price, and current discounts.
+   - Users can update or delete existing cabins and create new cabins, including the ability to upload cabin photos.
 
-## Routes
+3. **Booking Management**
+   - A table view provides information on all bookings, including arrival and departure dates, status, paid amount, and cabin and guest data.
+   - Booking status can be "unconfirmed," "checked in," or "checked out," with filter options for easy access.
+   - Additional booking data includes the number of guests, number of nights, guest observations, and the option to book breakfast (with breakfast price).
 
-* Dashboard = /
-* Authentication = /auth, /account
-* Cabins = /cabins
-* Bookings = /bookings
-* Check in = /checkin
-* Guests = /guests
-* Settings = /settings
+4. **Booking Operations**
+   - Users can delete bookings and manage check-ins and check-outs.
+   - On check-in, employees can accept payments outside the app and then confirm payment receipt within the app.
+   - Guests can add breakfast for their entire stay during check-in if not already booked.
 
-## Tech Decision
+5. **Guest Data**
+   - Guest data includes full name, email, national ID, nationality, and a country flag for easy identification.
 
-* Framework: React
-* Language: TypeScript
-* Router: React Router
-* Styling: Tailwindcss
-* Remote State Management: React Query
-* Global State Management: Redux Toolkit
-* Form Management: Formik
-* Other Tools: React Icons, React hot toast, Recharts, date-fns, Supabase
+6. **Dashboard**
+   - The initial app screen serves as a dashboard with the following features:
+     - List of guests checking in and out on the current day with the ability to perform related tasks.
+     - Statistics on recent bookings, sales, check-ins, and occupancy rates.
+     - Charts displaying daily hotel sales (total and extras such as breakfast) and stay duration statistics.
+
+7. **Application Settings**
+   - Users can define application-wide settings, including breakfast price, minimum and maximum nights per booking, and maximum guests per booking.
+   - Customizable theme options for a personalized user experience.
+
+8. **AI Assistants**
+   - Integrated AI copilot and AI business insights assistant to provide support and insights to users.
+
+### Installation
+
+1. Install the repository
+    ```
+        git clone https://github.com/sovereignofficial/innsight.ai.git
+    ```
+2. Install dependencies
+    ```
+        npm install 
+        pnpm install
+        yarn | yarn install
+        bun install
+    ```
+3. Create a .env file at the root folder of the app and then define your Supabase and OpenAI keys like this
+    ```
+    VITE_OPENAI_KEY=your-openai-key
+    VITE_SUPABASE_KEY=your-supabase-key
+    ```
+4. Start the app 
+ ```
+    npm run dev
+    pnpm run dev
+    yarn dev
+    bun run dev
+ ```
+
+### License
+This project is licensed under the [MIT License](LICENSE).
+
+### Support and Contributions
+
+This app developed by solo dev and there might be some bugs happened.I would like to get informed if you discover some lapse. For questions, issues, or contributions, please open a GitHub issue or contact me [egemenvkdvn35@gmail.com](egemenvkdvn35@gmail.com).
+

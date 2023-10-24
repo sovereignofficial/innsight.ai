@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    h1{
+        @apply sm:text-xl lg:text-5xl font-medium
+    }
+    h2{
+        @apply sm:text-lg lg:text-3xl font-medium
+    }
+    h3{
+        @apply sm:text-base lg:text-xl font-medium
+    }
+    h4{
+        @apply sm:text-sm lg:text-lg font-medium
+    }
+}
+
+@layer components{
+    .btn{
+        @apply bg-primary-500 hover:bg-primary-700 font-bold px-4 py-1 rounded disabled:bg-gray-600   animation-slow text-white
+    }
+    .btn-outlined{
+        @apply btn bg-transparent outline outline-1 outline-primary-500 text-primary-500 hover:text-white hover:bg-primary-500 disabled:outline-none disabled:text-white disabled:bg-gray-600
+    }
+    .btn-filter{
+     @apply btn dark:bg-secondary bg-transparent shadow-lg hover:text-white active:text-white dark:text-white text-black rounded
+    }
+    .btn-header{
+        @apply btn bg-transparent text-primary-500  hover:bg-transparent hover:shadow-sm hover:shadow-primary-500 animation-slow
+    }
+    .layout-sidebar-open{
+        @apply flex-1 md:ml-48 animation-slow
+    }
+    .layout-sidebar-closed{
+        @apply flex-1 md:ml-12 animation-slow 
+    }
+    .sidebar-open{
+        @apply fixed  top-0 md:h-screen dark:bg-secondary bg-gray-200 space-y-20 p-1 md:w-[200px] sm:inset-0  overflow-hidden   animation-slow z-30
+    }
+    .sidebar-closed{
+        @apply fixed top-0 sm:-left-3 md:left-0 h-screen p-1 dark:bg-secondary bg-gray-200  space-y-20 md:w-[50px] sm:w-0  overflow-hidden animation-slow
+    }
+    .form{
+        @apply flex flex-col gap-6 w-full p-3
+    }
+    .form-input{
+        @apply dark:bg-gray-700 dark:text-white text-black px-2 py-1 rounded outline-none border border-zinc-400 dark:border-none focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-primary-500 w-[200px] disabled:bg-gray-600
+    }
+    .tools{
+        @apply w-40 absolute sm:right-0 md:left-10 -bottom-24 rounded-lg dark:border-zinc-800 border bg-white shadow-md dark:shadow-none dark:bg-zinc-950 p-1 z-30
+    }
+    .tool-option{
+        @apply flex justify-center items-center p-1 w-full dark:hover:bg-zinc-800 hover:bg-zinc-100
+    }
+    .tool-btn{
+        @apply flex items-center justify-center w-full gap-1 p-1
+    }
+    .page{
+        @apply sm:p-5 md:p-10 space-y-3 w-full text-center overflow-hidden 
+    }
+    .page-header{
+        @apply w-full flex justify-between  items-center mb-14
+    }
+}
+
+@layer utilities{
+    .filter-none {
+        filter: none;
+    }
+    .filter-grayscale {
+        filter: grayscale(100%);
+    }
+    .animation-slow{
+        @apply transition-all ease-in-out duration-300
+    }
+
+}
+
+
+/* This will change the scrollbar for the entire page */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius:25px;
+}
+
