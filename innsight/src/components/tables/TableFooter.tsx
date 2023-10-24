@@ -6,7 +6,7 @@ export const TableFooter: React.FC<TableFooterInterface> = ({ rows, pages, currP
     const dispatch = useReduxDispatch();
 
     return (
-        <div className='w-11/12 mx-auto rounded-xl p-4 dark:bg-secondary dark:shadow-none shadow-md flex justify-between items-center' >
+        <div className='w-full sm:max-w-[370px] lg:max-w-full mx-auto rounded-xl p-4 dark:bg-secondary dark:shadow-none shadow-lg flex justify-between items-center' >
             <p><strong>{rows?.length}</strong> results found. Showing <strong>{currPage}</strong> to {pages.length === 0 ? 0 : pages?.length - 1}.</p>
             <div className="flex gap-2 items-center ">
                 <button disabled={currPage === 0} onClick={() => dispatch(previousPage())} className="btn-outlined">Previous</button>

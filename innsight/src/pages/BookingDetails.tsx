@@ -6,6 +6,7 @@ import { LoadingPage } from '~/components/LoadingPage'
 import { useReduxSelector } from '~/hooks/reduxHooks'
 import { useBooking } from '~/hooks/useBooking'
 import { useGuest } from '~/hooks/useGuests'
+import { format } from 'date-fns'
 
 export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
     const location = useLocation()
@@ -39,27 +40,27 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
             <div className='page-header'>
                 <div className='flex gap-6 items-center'>
                     <h1>Booking #{bookingId}</h1>
-                    <span className={`mt-3 px-3 py-1 uppercase text-sm rounded-full ${statusBgStyle}`}>{bookingData?.status}</span>
+                    <span className={`px-3 py-1 uppercase text-sm rounded-full ${statusBgStyle}`}>{bookingData?.status}</span>
                 </div>
                 <button onClick={() => navigate(-1)} className='btn-outlined'>← Back</button>
             </div>
 
-            <div className='dark:bg-secondary dark:shadow-none shadow-md w-full min-h-[400px]  relative overflow-hidden rounded-xl space-y-10'>
+            <div className='dark:bg-secondary dark:shadow-none shadow-lg w-full min-h-[400px]  relative overflow-hidden rounded-xl space-y-10'>
                 {isBookingLoading ? <LoadingPage /> : (
                     <>
-                        <section className='flex justify-between items-center bg-primary-500 text-white px-10 p-3 rounded-t-xl'>
+                        <section className='flex justify-between items-center bg-primary-500 text-white sm:px-3 lg:px-10 p-3 rounded-t-xl'>
                             <div className='flex justify-center items-center gap-5'>
                                 <BsHouseCheckFill size={35} />
-                                <h2>{bookingData?.numNigths} nights in Cabin {bookingData?.cabins?.name}</h2>
+                                <p className='lg:text-xl font-medium'>{bookingData?.numNigths} nights in Cabin <strong>{bookingData?.cabins?.name}</strong></p>
                             </div>
-                            <div className='flex justify-center items-center gap-5'>
-                                <h2>{bookingData?.bookingDates?.formattedStartDate} ({bookingData?.bookingDates?.bookingInfo.arrive})</h2>
+                            <div className='flex justify-center items-center lg:gap-5'>
+                                <p className='lg:text-xl font-medium'>{bookingData?.bookingDates?.formattedStartDate} ({bookingData?.bookingDates?.bookingInfo.arrive})</p>
                                 -
-                                <h2>{bookingData?.bookingDates?.formattedEndDate}</h2>
+                                <p className='lg:text-xl font-medium'>{bookingData?.bookingDates?.formattedEndDate}</p>
                             </div>
                         </section>
-                        <div className='flex gap-3 ml-5'>
-                            <span className='flex items-center gap-3'>
+                        <div className='flex sm:flex-col lg:flex-row lg:gap-3 lg:ml-5'>
+                            <span className='flex sm:justify-center lg:justify-start items-center gap-3'>
                                 <div className='w-10 h-5 mt-1 rounded-sm relative overflow-hidden'>
                                     <img className='w-full h-full object-cover' src={guest?.countryFlag || ''} />
                                 </div>
@@ -67,13 +68,9 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
                                 <p className='font-medium'>+ {bookingData?.numGuests} guests</p>
                             </span>
                             •
-                            <span>
                                 <p className='text-zinc-400'>{guest?.email}</p>
-                            </span>
                             •
-                            <span>
                                 <p className='text-zinc-400'>National ID {guest?.nationalID}</p>
-                            </span>
                         </div>
                         <div className='flex gap-3 items-center ml-5'>
                             <BiCheckCircle />
@@ -83,7 +80,7 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
                             </span>
                         </div>
 
-                        <div className={`flex justify-between items-center w-10/12 mx-auto p-5 rounded-lg ${billBgStyle}`}>
+                        <div className={`flex justify-between items-center sm:w-11/12 lg:w-10/12 mx-auto p-5 rounded-lg ${billBgStyle}`}>
                             <span className='flex gap-3 items-center'>
                                 <BiDollarCircle size={22} />
                                 <h4>Total Price</h4>
@@ -92,7 +89,7 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
                             <h4>{confirmPayment && bookingData?.isPaid && bookingData.hasBreakfast === includeBreakfast ? "Paid" : "Will Pay at Property"}</h4>
                         </div>
                         <div className='text-end p-5'>
-                            <p className='text-zinc-400'>Booked {new Date(bookingData?.created_at!).toString()}</p>
+                            <p className='text-zinc-400'>Booked on {format( new Date(bookingData?.created_at!),'eee dd MMMM yyyy HH:mm')}</p>
                         </div>
                     </>
                 )}
@@ -101,12 +98,12 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
 
             {checkIn && (
                 <div className='space-y-5'>
-                    <div className='flex items-center gap-3 p-6 dark:bg-secondary dark:shadow-none shadow-md rounded-lg pl-10'>
+                    <div className='flex items-center gap-3 p-6 dark:bg-secondary dark:shadow-none shadow-lg rounded-lg pl-10'>
                         <input className='w-5 h-5' type='checkbox'
                             onChange={() => setIncludeBreakfast(!includeBreakfast)} checked={includeBreakfast} disabled={bookingData?.hasBreakfast === true} />
                         <p>Want to add breakfast for ${bookingData?.numNigths! * hotelSettings?.breakfastPrice * bookingData?.numGuests!}?</p>
                     </div>
-                    <div className='flex items-center gap-3 p-6 dark:bg-secondary dark:shadow-none shadow-md rounded-lg pl-10'>
+                    <div className='flex items-center gap-3 p-6 dark:bg-secondary dark:shadow-none shadow-lg rounded-lg pl-10'>
                         <input className='w-5 h-5' type='checkbox' disabled={confirmPayment && bookingData?.isPaid && includeBreakfast === bookingData.hasBreakfast}
                             onChange={() => setConfirmPayment(!confirmPayment)} checked={confirmPayment} />
                         <p>I confirm that {guest?.fullName} has paid the total amount.</p>

@@ -7,7 +7,7 @@ export const UserDataForm: React.FC = () => {
     const { updateUserFn, isUpdateLoading } = useUser();
 
     return (
-        <div className="w-1/2 mx-auto">
+        <div className="lg:w-1/2 mx-auto">
             <Form
                 initialValues={{
                     email: user?.email,

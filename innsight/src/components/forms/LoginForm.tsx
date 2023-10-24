@@ -21,7 +21,7 @@ export const LoginForm: React.FC = () => {
 
 
     return (
-        <div className="dark:bg-secondary dark:shadow-none shadow-md p-5 rounded-xl">
+        <div className="dark:bg-secondary dark:shadow-none shadow-lg p-5 rounded-xl">
             <Form
                 initialValues={{
                     email: '',

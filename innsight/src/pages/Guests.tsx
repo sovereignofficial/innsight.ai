@@ -23,19 +23,19 @@ export const Guests: React.FC = () => {
   pageData?.map(item => {
     rows.push({
       cells: [
-        (<div>
-          <p >{item.fullName}</p>
-        </div>),
-        (<div>
+        (<p>
+          {item.fullName}
+        </p>),
+        (<p>
           {item.email}
-        </div>),
-        (<div>
+        </p>),
+        (<p>
           {item.nationality}
-        </div>),
-        (<div>
+        </p>),
+        (<p>
           {item.nationalID}
-        </div>),
-        (<div className="mx-auto w-20 h-10 aspect-square relative overflow-hidden rounded-md">
+        </p>),
+        (<div className="mx-auto lg:w-20 lg:h-10 sm:w-10 sm:h-5 aspect-square relative overflow-hidden sm:rounded lg:rounded-lg">
           <img className="w-full h-full object-cover" src={`${item.countryFlag}`} />
         </div>),
         (<RowTools>
@@ -66,7 +66,7 @@ export const Guests: React.FC = () => {
     <div className="page">
       <div className="page-header" >
         <h1>Guests</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex sm:mx-auto lg:mx-0 items-center gap-2 flex-wrap px-2">
           <Filters>
             <FilterItem type="searchInput" innerText="Search for a guest" />
           </Filters>

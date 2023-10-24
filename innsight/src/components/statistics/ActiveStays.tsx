@@ -11,7 +11,7 @@ export const ActiveStays: React.FC = memo(() => {
     const navigate = useNavigate();
 
     return (
-        <div className='col-span-1 w-11/12 mx-auto h-[400px] p-5 rounded-xl dark:bg-secondary dark:shadow-none shadow-md relative overflow-y-scroll space-y-3'>
+        <div className='col-span-1 sm:w-full lg:w-11/12 mx-auto h-[400px] p-5 rounded-xl dark:bg-secondary dark:shadow-none shadow-lg relative overflow-y-scroll space-y-3'>
             {isActiveStaysLoading && <LoadingPage />}
             <div className="flex justify-between items-center">
                 <h3 className="text-start">Active Stays</h3>
@@ -22,13 +22,13 @@ export const ActiveStays: React.FC = memo(() => {
                     {activeStays?.map((stay, index) => (
                         <StayListItem onClick={() => navigate(`/bookings/${stay.id}`)} key={index}>
                             <div className="space-x-2">
-                                <span>{stay.guests?.fullName}</span>
+                                <p>{stay.guests?.fullName}</p>
                             </div>
                             <div className="space-x-2">
-                                <span>Cabin {stay.cabins?.name} with {stay.numGuests} guests</span>
+                                <p>Cabin {stay.cabins?.name} with {stay.numGuests} guests</p>
                             </div>
                             <div className="space-x-2">
-                                <span>{differenceInDays(new Date(stay.endDate), new Date())} days remain</span>
+                                <p>{differenceInDays(new Date(stay.endDate), new Date())} days remain</p>
                             </div>
                         </StayListItem>
                     ))}

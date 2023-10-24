@@ -42,7 +42,7 @@ export const FilterItem: React.FC<FilterItemInterface> = memo(({ value, type, in
                         : (
                             <select
                                 onChange={(e) => handleSelect(e)}
-                                className='mx-2 outline-none  px-4 py-1 font-medium  dark:bg-secondary dark:shadow-none shadow-md '
+                                className='sm:my-2 lg:mx-2 rounded outline-none  px-4 py-1 font-medium  dark:bg-secondary dark:shadow-none shadow-lg '
                                 value={filterMethod}>
                                 <option value={innerText}>{innerText}</option>
                                 {options && options.map(({ value, text }, index) => (

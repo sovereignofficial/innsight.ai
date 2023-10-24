@@ -6,7 +6,7 @@ export const ModalWindow:React.FC<{children:ReactNode}> = ({children}) => {
   
     return(
       <div className={isOpen ? 'inset-0 fixed backdrop-blur-sm flex justify-center items-center z-50' : 'hidden'}>
-        <div ref={modalRef} className='sm:w-screen md:w-1/2 min-h-[500px] dark:bg-zinc-950 dark:shadow-none bg-white shadow-md rounded-xl '>
+        <div ref={modalRef} className='sm:w-screen lg:w-1/2 min-h-[500px] dark:bg-zinc-950 dark:shadow-none bg-white shadow-lg rounded-xl '>
             {children}
         </div>
       </div>

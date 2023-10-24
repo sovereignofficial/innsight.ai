@@ -40,7 +40,7 @@ export const Settings = () => {
         <h1>Update hotel settings</h1>
       </div>
 
-      <div className="w-10/12  m-auto dark:bg-secondary dark:shadow-none shadow-md rounded-xl p-5">
+      <div className="w-full m-auto dark:bg-secondary dark:shadow-none shadow-lg rounded-xl p-5">
         <div className="w-11/12 mx-auto">
           <Form onSubmitForm={handleUpdateSettings} initialValues={{
             minBookingLength: hotelSettings?.minBookingLength,

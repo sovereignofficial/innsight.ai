@@ -8,12 +8,12 @@ export const Account:React.FC = () => {
                 <h1>Account</h1>
         </div>
 
-        <div className="dark:bg-secondary dark:shadow-none shadow-md text-start p-10 rounded-xl">
+        <div className="dark:bg-secondary dark:shadow-none shadow-lg text-start p-10 rounded-xl">
             <div className="space-y-2">
                 <h3>Update user data</h3>
                 <UserDataForm/>
             </div>
-            <div className="space-y-2">
+            <div className="mt-10 space-y-2">
                 <h3>Update user password</h3>
                 <UpdatePasswordForm/>
             </div>

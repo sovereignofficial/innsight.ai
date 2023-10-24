@@ -33,7 +33,7 @@ export const SalesChart: React.FC<{
     });
 
     return (
-        <div className="w-11/12 mx-auto dark:bg-secondary dark:shadow-none shadow-md p-5 rounded-xl text-start space-y-5 relative overflow-hidden">
+        <div className="lg:w-11/12 sm:w-full mx-auto dark:bg-secondary dark:shadow-none shadow-lg p-5 rounded-xl text-start space-y-5 relative overflow-hidden">
             {isLoading && <LoadingPage/>}
             <h3>Sales from {format(allDates[0], 'MMM dd yyyy')} to {format(allDates[allDates.length - 1], 'MMM dd yyyy')}</h3>
             <ResponsiveContainer height={400} width={'100%'}>
@@ -43,7 +43,7 @@ export const SalesChart: React.FC<{
                     <CartesianGrid stroke={theme === "dark" ? `#202329` : '#bebebe'} strokeDasharray="6" />
                     <Tooltip contentStyle={{ backgroundColor: theme==='dark'? "black":'white', borderRadius: "10px" }} />
                     <Area dataKey="totalSales" name="Total Sales" stroke={"#00ff62"} unit={"$"} fill={'#36ff83'} type='monotone' />
-                    <Area dataKey="extrasSales" name="Extras Sales" stroke={"#00bbff"} unit={"$"} fill={'#39c7fa'} type='monotone' />
+                    <Area dataKey="extrasSales" name="Extras Sales" stroke={"#4400ff"} unit={"$"} fill={'#5a1fff'} type='monotone' />
                 </AreaChart>
             </ResponsiveContainer>
         </div>

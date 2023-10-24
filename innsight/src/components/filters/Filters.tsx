@@ -7,8 +7,8 @@ const FilterContext = createContext({});
 const Filters: FiltersType = ({ children }) => {
 
     return <FilterContext.Provider value={{}}>
-        <div className={`flex justify-start items-center h-full py-1 `}>
-            <div className="flex items-center ">
+        <div className={`flex justify-start items-center h-full `}>
+            <div className="flex items-center flex-wrap">
                 {children}
             </div>
         </div>

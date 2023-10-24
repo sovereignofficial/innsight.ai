@@ -29,14 +29,16 @@ export const Dashboard = () => {
     <div className="page">
       <div className="page-header">
         <h1>Dashboard</h1>
-        <Filters>
-          <Filters.FilterItem value={7} type="btn" innerText="Last 7 days" />
-          <Filters.FilterItem value={30} type="btn" innerText="Last 30 days" />
-          <Filters.FilterItem value={90} type="btn" innerText="Last 90 days" />
-        </Filters>
+        <div className="flex items-center gap-2 flex-wrap px-2 sm:mx-auto lg:mx-0">
+          <Filters>
+            <Filters.FilterItem value={7} type="btn" innerText="Last 7 days" />
+            <Filters.FilterItem value={30} type="btn" innerText="Last 30 days" />
+            <Filters.FilterItem value={90} type="btn" innerText="Last 90 days" />
+          </Filters>
+        </div>
       </div>
 
-      <div className="relative min-h-[500px] rounded-xl p-10 space-y-10">
+      <div className="relative min-h-[500px] rounded-xl p-5 space-y-10">
         <Stats
           isLoading={isBookingsLoading || isCabinsLoading || isStaysLoading}
           createdBookings={recentBookings?.createdBookings!}
@@ -46,7 +48,7 @@ export const Dashboard = () => {
           numDays={numDays}
         />
         <SalesChart salesAndCheckedIns={recentBookings?.salesAndCheckIns!} numDays={numDays} isLoading={isBookingsLoading} />
-        <div className="w-11/12 grid lg:grid-cols-2 sm:grid-cols-1 mx-auto gap-2">
+        <div className="sm:w-full lg:w-11/12 grid lg:grid-cols-2 sm:grid-cols-1 mx-auto gap-2">
           <TodayActivity />
           <DurationChart confirmedStays={confirmedStays!} isLoading={isStaysLoading} />
         </div>

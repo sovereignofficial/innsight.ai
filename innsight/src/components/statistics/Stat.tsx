@@ -15,7 +15,7 @@ export const Stat: React.FC<{
     isLoading
 }) => {
         return (
-            <div className="relative overflow-hidden col-span-1 grid grid-flow-col  h-[100px] rounded-xl  shadow-md dark:bg-secondary dark:shadow-none">
+            <div className="relative overflow-hidden col-span-1 grid grid-flow-col  h-[100px] rounded-xl  shadow-lg dark:bg-secondary dark:shadow-none">
                 {isLoading && <LoadingPage/>}
                 <div className={` col-span-3 place-items-center grid `}>
                     <div className={` ${bgColor} w-16 h-16 rounded-full flex justify-center items-center`}>

@@ -20,10 +20,16 @@ export const Sidebar: React.FC<{ sidebarOpen: boolean }> = ({ sidebarOpen }) => 
       <div className=" p-2 ">
         <ul className="space-y-8">
           {navigation.map((item, index) => (
-            <li className={sidebarOpen ? " mx-auto sm:w-1/6 md:w-full" : "w-full"} key={index}>
-              <Link className='flex items-center space-x-12' to={item.path}>
-                <span className={location.pathname === item.path ? 'text-primary-500' : 'dark:text-indigo-200 text-zinc-500  '}><item.icon size={20} /></span>
-                <span className={location.pathname === item.path ? 'text-primary-500 font-medium mx-auto' : "dark:text-indigo-200  text-zinc-500 font-medium mx-auto"}>{item.name}</span>
+            <li className={sidebarOpen ? " mx-auto w-full" : "w-full"} key={index}>
+              <Link className='flex items-center sm:space-x-5 lg:space-x-12 w-full' to={item.path}>
+                <span 
+                className={location.pathname === item.path
+                 ? 'text-primary-500' 
+                 : 'dark:text-indigo-200 text-zinc-500  '}><item.icon size={20} /></span>
+                <span 
+                className={location.pathname === item.path
+                 ? 'text-primary-500 font-medium lg:mx-auto sm:hidden lg:block' 
+                 : "dark:text-indigo-200  text-zinc-500 font-medium mx-auto sm:hidden lg:block"}>{item.name}</span>
               </Link>
             </li>
           ))}

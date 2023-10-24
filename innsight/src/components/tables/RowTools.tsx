@@ -24,7 +24,7 @@ export const RowTools: React.FC<{ children:ReactNode }> = ({ children }) => {
 
 
     return (
-        <div className="text-end pr-20 space-y-4 relative">
+        <div className="text-end  space-y-4 relative">
             <button onClick={() => setSelectOpen(!selectOpen)}><BiDotsVerticalRounded size={20} /></button>
             {selectOpen && (
                 <div ref={toolRef} className='tools'>

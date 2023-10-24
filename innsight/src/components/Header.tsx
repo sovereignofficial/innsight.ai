@@ -8,7 +8,7 @@ export const Header = () => {
   const dispatch = useReduxDispatch();
   return (
     <div className={ "w-full p-2 flex items-center gap-5 justify-end" }>
-    <button className="md:hidden flex-1"
+    <button className="lg:hidden flex-1"
      onClick={()=>dispatch(sidebarToggle(!sidebarOpen))} ><Logo size={8} /></button>
      <HeaderTools/>
     </div>

@@ -47,14 +47,14 @@ export const Bookings: React.FC = () => {
           (<div>
             <div >
               <p>{item?.guests?.fullName}</p>
-              <p className="text-zinc-500">{item?.guests?.email}</p>
+              <p className="text-zinc-500 sm:hidden lg">{item?.guests?.email}</p>
             </div>
           </div>),
           (<div>
             <p>{item.bookingDates?.bookingInfo.arrive} → {item.numNigths} nights stay </p>
             <p className="text-zinc-500">{item.bookingDates?.formattedStartDate} - {item.bookingDates?.formattedEndDate}</p>
           </div>),
-          (<div><span className={`px-3 py-1 uppercase text-sm rounded-full ${setStatusStyle(item)}`}>{item.status}</span></div>),
+          (<div><span className={`px-3 py-1 uppercase sm:text-xs lg:text-sm rounded-full ${setStatusStyle(item)}`}>{item.status}</span></div>),
           (<p>${item.totalPrice}</p>),
           (<RowTools>
             <ToolOption onClick={() => redirectToBookingDetails(item.id!)}><AiOutlineEye /> <p>See Details</p></ToolOption>
@@ -73,7 +73,7 @@ export const Bookings: React.FC = () => {
     return (
       <tbody>
         {rows.map(({ cells }, indexA) => (
-          <tr className='dark:hover:bg-zinc-900/50 hover:bg-zinc-100' key={indexA}>
+          <tr className='dark:hover:bg-zinc-900/50 hover:bg-zinc-100 text-cennter' key={indexA}>
             {cells.map((cell, indexB) => (
               <td className='border-t dark:border-zinc-800 border-zinc-300 p-1' key={indexB + 100}>{cell}</td>
             ))}
@@ -81,13 +81,13 @@ export const Bookings: React.FC = () => {
         ))}
       </tbody>
     )
-  },[pages,currPage])
+  }, [pages, currPage])
 
   return (
     <div className="page">
       <div className="page-header" >
         <h1>Bookings</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap px-2 sm:mx-auto lg:mx-0">
           <Filters>
             <Filters.FilterItem type="btn" innerText="All" />
             <Filters.FilterItem type="btn" innerText="Unconfirmed" />

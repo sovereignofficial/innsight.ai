@@ -46,7 +46,7 @@ export const DurationChart: React.FC<{ confirmedStays: Booking[],isLoading:boole
         const data = useMemo(() => prepareData(pieFilters, confirmedStays), [pieFilters, confirmedStays]);
     
         return (
-            <div className="col-span-1  h-[400px] p-5 rounded-xl dark:bg-secondary dark:shadow-none shadow-md relative overflow-hidden">
+            <div className="col-span-1 h-[400px] w-full p-5 rounded-xl dark:bg-secondary dark:shadow-none shadow-lg relative overflow-hidden">
                 {isLoading && <LoadingPage/>}
                 <h3 className="text-start">Stay duration summary </h3>
                 <ResponsiveContainer>

@@ -55,7 +55,7 @@ export const Cabins = () => {
     <div className="page">
       <div className="page-header">
         <h1>Cabins</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap px-2 sm:mx-auto lg:mx-0">
           <Filters>
             <Filters.FilterItem type="btn" innerText="All" />
             <Filters.FilterItem type="btn" innerText="No discount" />
