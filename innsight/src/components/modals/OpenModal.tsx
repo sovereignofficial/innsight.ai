@@ -9,7 +9,6 @@ export const OpenModalBtn:React.FC<{children:ReactNode,styleType:BtnStyleType}> 
   
     return(
       <button className={className} onClick={()=>{
-        console.log("modal is getting displayed...")
         openModal()
       }}>{children}</button>
     )

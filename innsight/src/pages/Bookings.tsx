@@ -16,7 +16,7 @@ import { Booking, BookingStates } from "~/types/bookings.d"
 import { TableRow } from "~/types/table.d"
 import { useCallback } from "react"
 
-export const Bookings: React.FC = () => {
+const Bookings: React.FC = () => {
   const navigate = useNavigate();
   const redirectToBookingDetails = (bookingId: number) => {
     navigate(`/bookings/${bookingId}`)
@@ -118,3 +118,5 @@ export const Bookings: React.FC = () => {
     </div>
   )
 }
+
+export default Bookings

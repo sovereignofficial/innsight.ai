@@ -6,7 +6,7 @@ import { useBooking } from "~/hooks/useBooking";
 
 export const TodayItem: React.FC<{ activity: Booking}> = ({ activity  }) => {
 
-    const { id, status, guests, numNigths } = activity;
+    const { status, guests, numNigths } = activity;
 
     const activityStatus = status === BookingStates.UNCONFIRMED ? "arriving" : status === BookingStates.CHECKEDIN ? "departing" : "error";
 
@@ -20,26 +20,26 @@ export const TodayItem: React.FC<{ activity: Booking}> = ({ activity  }) => {
             </div>
             <p><strong>{guests?.fullName}</strong></p>
             <p><strong>{numNigths}</strong> nights</p>
-            <ActivityTaskButton activityStatus={activityStatus} id={id!}/>
+            <ActivityTaskButton activityStatus={activityStatus} booking={activity}/>
         </li>
     )
 }
 
-const ActivityTaskButton:React.FC<{activityStatus:string,id:number}> = ({activityStatus,id})=>{
+const ActivityTaskButton:React.FC<{activityStatus:string,booking:Booking}> = ({activityStatus,booking})=>{
     const navigate = useNavigate();
-    const {checkOutFn} = useBooking(id)
+    const {checkOutFn} = useBooking()
         
     if(activityStatus === "arriving"){
 
         return (
-            <button onClick={()=>navigate(`/checkin/${id}`)} className="btn bg-green-300 text-green-900 hover:bg-green-500">
+            <button onClick={()=>navigate(`/checkin/${booking.id}`)} className="btn bg-green-300 text-green-900 hover:bg-green-500">
                 Check in
             </button>
         )
     }else{
 
         return (
-            <button onClick={()=>checkOutFn(id)} className="btn">
+            <button onClick={()=>checkOutFn(booking)} className="btn">
                 Check out
             </button>
         )

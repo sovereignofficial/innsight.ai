@@ -44,14 +44,14 @@ export const AddCabinModalForm: React.FC = () => {
                             description: '',
                             image: ''
                         }} onSubmitForm={(values) => {
-                            console.log("submission")
                             mutate({
                                 "name": values.cabinName,
                                 "image": values.image,
                                 "regularPrice": values.regularPrice,
                                 "description": values.description,
                                 "discount": values.discount,
-                                "maxCapacity": values.maxCapacity
+                                "maxCapacity": values.maxCapacity,
+                                "isFull":false,
                             })
 
                         }}

@@ -9,11 +9,11 @@ import { useErrorHandler } from "~/hooks/useErrorHandler"
 import { toastStates } from "~/types/toast.d"
 import { SettingsType } from "~/types/settings.d"
 
-export const Settings = () => {
+const Settings:React.FC = () => {
   const { hotelSettings } = useReduxSelector(st => st.appReducer)
   const queryClient = useQueryClient();
   const { handleError } = useErrorHandler();
-  
+
   const { mutate, isError: isUpdateError, error: updateError, isPending } = useMutation({
     mutationFn: (updatedSettings: Partial<SettingsType>) => updateSettings(hotelSettings?.id, updatedSettings),
     onSuccess: () => {
@@ -58,3 +58,5 @@ export const Settings = () => {
     </div>
   )
 }
+
+export default Settings;

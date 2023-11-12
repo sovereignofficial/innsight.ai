@@ -11,7 +11,6 @@ export async function getBookings():Promise<Booking[]> {
     const bookingDates = handleBookingDates(booking.startDate, booking.endDate);
     return { ...booking, bookingDates }
   })
-  console.log({bookings});
   return bookings
 }
 

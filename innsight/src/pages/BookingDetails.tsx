@@ -8,7 +8,7 @@ import { useBooking } from '~/hooks/useBooking'
 import { useGuest } from '~/hooks/useGuests'
 import { format } from 'date-fns'
 
-export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
+const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
     const location = useLocation()
     const bookingId = parseInt(location.pathname.split('/').pop()!)
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
     const { hotelSettings } = useReduxSelector(st => st.appReducer);
 
     const {
-        bookingData, isBookingLoading,checkInFn,
+        bookingData, isBookingLoading, checkInFn,
         confirmPayment, totalPrice, includeBreakfast,
         setConfirmPayment, setIncludeBreakfast
     } = useBooking(bookingId);
@@ -68,9 +68,9 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
                                 <p className='font-medium'>+ {bookingData?.numGuests} guests</p>
                             </span>
                             •
-                                <p className='text-zinc-400'>{guest?.email}</p>
+                            <p className='text-zinc-400'>{guest?.email}</p>
                             •
-                                <p className='text-zinc-400'>National ID {guest?.nationalID}</p>
+                            <p className='text-zinc-400'>National ID {guest?.nationalID}</p>
                         </div>
                         <div className='flex gap-3 items-center ml-5'>
                             <BiCheckCircle />
@@ -89,7 +89,7 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
                             <h4>{confirmPayment && bookingData?.isPaid && bookingData.hasBreakfast === includeBreakfast ? "Paid" : "Will Pay at Property"}</h4>
                         </div>
                         <div className='text-end p-5'>
-                            <p className='text-zinc-400'>Booked on {format( new Date(bookingData?.created_at!),'eee dd MMMM yyyy HH:mm')}</p>
+                            <p className='text-zinc-400'>Booked on {format(new Date(bookingData?.created_at!), 'eee dd MMMM yyyy HH:mm')}</p>
                         </div>
                     </>
                 )}
@@ -120,3 +120,5 @@ export const BookingDetails: React.FC<{ checkIn: boolean }> = ({ checkIn }) => {
         </div>
     )
 }
+
+export default BookingDetails

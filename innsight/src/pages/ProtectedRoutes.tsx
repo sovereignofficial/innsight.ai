@@ -3,7 +3,7 @@ import { useUser } from "~/hooks/useUser"
 import { LoadingPage } from "~/components/LoadingPage";
 import { useEffect } from "react";
 
-export const ProtectedRoutes: React.FC = () => {
+const ProtectedRoutes: React.FC = () => {
     const navigate = useNavigate();
 
     // load the authenticated user
@@ -21,3 +21,5 @@ export const ProtectedRoutes: React.FC = () => {
     // if there is user render the app
     if (isAuthenticated) return <Outlet />
 }
+
+export default ProtectedRoutes;

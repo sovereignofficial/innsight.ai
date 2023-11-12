@@ -1,19 +1,20 @@
 import { toast } from 'react-toastify';
-import { differenceInDays, parseISO,addDays, format, getDaysInMonth, startOfMonth } from "date-fns";
+import { differenceInDays, parseISO, addDays, format, getDaysInMonth, startOfMonth } from "date-fns";
 import { Booking } from '~/types/bookings.d';
 import { ToastInterface, toastStates } from '~/types/toast.d';
 import { Cabin } from '~/types/cabins.d';
-
-
+import { AES } from 'crypto-js';
+import Utf8 from 'crypto-js/enc-utf8';
+import { secretKey } from '~/services/supabase';
 
 //theme
 export const getTheme = () => {
-  const theme = localStorage.getItem('theme');
-  const classList = document.documentElement.classList;
-  theme === 'dark' ? classList.add(`${theme}`) : classList.remove('dark')
-  return theme
+    const theme = localStorage.getItem('theme');
+    const classList = document.documentElement.classList;
+    theme === 'dark' ? classList.add(`${theme}`) : classList.remove('dark')
+    return theme
 }
-export const setTheme = (theme:'light' | 'dark') => {
+export const setTheme = (theme: 'light' | 'dark') => {
     localStorage.setItem('theme', theme);
     const classList = document.documentElement.classList
     return theme === 'dark' ? classList.add('dark') : classList.remove('dark')
@@ -28,32 +29,32 @@ export function getRandomNumber(threshold: number): number {
 // arrange date time
 
 export function generateRandomDates(daysToAdd: number, createdDaysBefore: number): { startDate: string, endDate: string, created_at: string } {
-  // Get the current date
-  const currentDate = new Date();
+    // Get the current date
+    const currentDate = new Date();
 
-  // Get the first day of the current month
-  const firstDayOfCurrentMonth = startOfMonth(currentDate);
+    // Get the first day of the current month
+    const firstDayOfCurrentMonth = startOfMonth(currentDate);
 
-  // Calculate the maximum number of days to add from the start of the month
-  const maxDaysToAdd = getDaysInMonth(currentDate) - 1;
+    // Calculate the maximum number of days to add from the start of the month
+    const maxDaysToAdd = getDaysInMonth(currentDate) - 1;
 
-  // Generate a random number between 0 and 30 (or the maximum possible days)
-  const randomDays = Math.min(Math.floor(Math.random() * (maxDaysToAdd + 1)), 30);
+    // Generate a random number between 0 and 30 (or the maximum possible days)
+    const randomDays = Math.min(Math.floor(Math.random() * (maxDaysToAdd + 1)), 30);
 
-  // Calculate the startDate by adding randomDays to the first day of the current month
-  const startDate = addDays(firstDayOfCurrentMonth, randomDays);
+    // Calculate the startDate by adding randomDays to the first day of the current month
+    const startDate = addDays(firstDayOfCurrentMonth, randomDays);
 
-  // Calculate the endDate by adding daysToAdd to the startDate
-  const endDate = addDays(startDate, daysToAdd);
+    // Calculate the endDate by adding daysToAdd to the startDate
+    const endDate = addDays(startDate, daysToAdd);
 
-  // Calculate the created_at date by subtracting createdDaysBefore from startDate
-  const created_at = addDays(startDate, -createdDaysBefore);
+    // Calculate the created_at date by subtracting createdDaysBefore from startDate
+    const created_at = addDays(startDate, -createdDaysBefore);
 
-  return {
-    startDate: format(startDate, "yyyy-MM-dd'T'HH:mm:ssxxx"),
-    endDate: format(endDate, "yyyy-MM-dd'T'HH:mm:ssxxx"),
-    created_at: format(created_at, "yyyy-MM-dd'T'HH:mm:ssxxx"),
-  };
+    return {
+        startDate: format(startDate, "yyyy-MM-dd'T'HH:mm:ssxxx"),
+        endDate: format(endDate, "yyyy-MM-dd'T'HH:mm:ssxxx"),
+        created_at: format(created_at, "yyyy-MM-dd'T'HH:mm:ssxxx"),
+    };
 }
 
 
@@ -207,11 +208,11 @@ export const recursiveBinarySearchByStatus = (table: Booking[], targetStatus: st
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
-export const isValidEmail = (email:string):boolean =>{
+export const isValidEmail = (email: string): boolean => {
     return emailRegex.test(email);
 }
 
-export const isValidPassword = (password:string):boolean =>{
+export const isValidPassword = (password: string): boolean => {
     return passwordRegex.test(password);
 }
 
@@ -224,26 +225,41 @@ export const initiateToast = ({ state, message }: ToastInterface) => {
     switch (state) {
         case toastStates.ERROR:
             toast.error(message, {
-                position:toastPosition
+                position: toastPosition
             })
             break;
         case toastStates.INFO:
             toast.info(message, {
-                position:toastPosition
+                position: toastPosition
             })
             break;
         case toastStates.SUCCESS:
             toast.success(message, {
-                position:toastPosition
+                position: toastPosition
             })
             break;
 
         case toastStates.WARN:
             toast.warn(message, {
-                position:toastPosition
+                position: toastPosition
             })
             break;
         default:
             break;
     }
 }
+
+//chatId encryption
+export const encryptChatURI = (chatId:number) => {
+    const encryptedId = AES.encrypt(chatId.toString(), secretKey).toString();
+    let encodedURI = encodeURIComponent(encryptedId);
+    return encodedURI
+}
+
+export const decryptChatURI = (encryptedChatId: string) => {
+    const decodedURI = decodeURIComponent(encryptedChatId);
+    const decryptedBytes = AES.decrypt(decodedURI, secretKey);
+    const decryptedChatId = decryptedBytes.toString(Utf8);
+    return Number(decryptedChatId);
+}
+

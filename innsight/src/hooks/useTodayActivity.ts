@@ -9,7 +9,6 @@ export const useTodayActivity = () => {
       });
     
     let activities:Booking[] = [];
-    console.log(data);
     const unconfirmedActivities = data?.checkInActivities.filter(booking => booking.status !== BookingStates.CHECKEDIN);
     const unCheckedActivities = data?.checkOutActivities.filter(booking => booking.status !== BookingStates.CHECKEDOUT);
     

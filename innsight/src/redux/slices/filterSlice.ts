@@ -72,7 +72,6 @@ const filterSlice = createSlice({
             const {data,searchQuery} = action.payload;
             const searchResults = data.filter(item=> item.fullName.includes(searchQuery));
             state.filteredData = searchResults;
-            console.warn(state.filteredData);
 
         },
         changeFilterMethod: (state, action) => {

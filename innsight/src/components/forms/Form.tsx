@@ -18,7 +18,6 @@ const Form: FormType = ({ children, onSubmitForm, initialValues }) => {
         enableReinitialize:true,
         initialValues,
         onSubmit: (values,{resetForm}) => {
-            console.log("Form onSubmit - values:", values); // Debug statement
             onSubmitForm(values);
             resetForm();
         }

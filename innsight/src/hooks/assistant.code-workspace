@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "../components/assistant"
+		},
+		{
+			"path": "../components/filters"
+		},
+		{
+			"path": "../components/forms"
+		},
+		{
+			"path": "../components/layouts"
+		},
+		{
+			"path": "../components/modals"
+		},
+		{
+			"path": "../components/statistics"
+		},
+		{
+			"path": "../components/tables"
+		},
+		{
+			"path": "../redux/slices"
+		}
+	]
+}

@@ -52,7 +52,7 @@
     }
 
     .sidebar-open {
-        @apply fixed top-0 bottom-0 h-screen dark:bg-secondary bg-gray-200 space-y-20 sm:p-2 lg:p-1 lg:w-[200px] overflow-hidden animation-slow z-30
+        @apply fixed top-0 bottom-0 h-screen dark:bg-secondary bg-gray-200 space-y-20 sm:p-1 lg:p-2 lg:w-[200px] overflow-hidden animation-slow z-30
     }
 
     .sidebar-closed {

@@ -14,7 +14,7 @@ import { TableRow } from "~/types/table.d"
 import { Cabin } from "~/types/cabins.d"
 import { useCallback } from "react"
 
-export const Cabins = () => {
+const Cabins = () => {
 
   const { isCabinsLoading, deleteFn, tableData, pages, currPage,cabins }
     = useCabins()
@@ -84,3 +84,5 @@ export const Cabins = () => {
     </div>
   )
 }
+
+export default Cabins;

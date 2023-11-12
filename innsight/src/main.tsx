@@ -25,6 +25,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
-
   </React.StrictMode>,
 )

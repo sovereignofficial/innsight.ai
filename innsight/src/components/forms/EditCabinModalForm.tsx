@@ -46,7 +46,6 @@ export const EditCabinModalForm: React.FC<{ cabin: Cabin }> = ({ cabin }) => {
                             image: cabin.image
                         }}
                         onSubmitForm={(values) => {
-                            console.log("preparing mutate values...")
                             const args = {
                                 cabinId: cabin.id,
                                 newValues: {

@@ -12,19 +12,16 @@ const tableSlice = createSlice({
     },
     reducers: {
         setPages: (state,action) => {
-            console.log('2')
             const chunks=[];
             for (let i = 0; i < action.payload?.length; i += 4) {
                 chunks.push(action.payload.slice(i, i + 4));
             }
-            console.log(chunks)
             state.pages = chunks
         },
         setHeaders: (state, action) => {
             state.data.headers = action.payload;
         },
         setRows: (state, action) => {
-            console.log('1')
             state.data.rows = action.payload;
         },
         nextPage: (state) => {

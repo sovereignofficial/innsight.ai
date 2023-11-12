@@ -8,11 +8,78 @@ import { Booking, BookingStates, BookingStatus } from '~/types/bookings.d';
 import { Cabin } from '~/types/cabins.d';
 import { Guest } from '~/types/guests.d';
 import { SettingsType } from '~/types/settings.d';
+import EventEmitter from 'events';
 
 const openai = new OpenAI({
     apiKey: import.meta.env.VITE_OPENAI_KEY,
     dangerouslyAllowBrowser: true
 });
+
+export const emitter = new EventEmitter();
+
+export const runGptStream = async (prompt: string) => {
+    try {
+        if (!prompt) throw new Error("Please add your prompt before you sending a request to gpt-3.5-turbo!");
+
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [{
+                "role": "system",
+                "content": "You're an helpful assistant of resort hotel management app. Your name is InnSight. You're supposed to be help hotel staff and manager with the data is given to you. Good Luck!"
+            },
+            {
+                "role": "user",
+                "content": `${prompt}
+                `
+            }
+            ],
+            stream:true
+        })
+
+        const reader = response.toReadableStream().getReader();
+        const decoder = new TextDecoder("utf-8");
+        let resultText = "";
+
+        let buffer = "";
+
+        while(true){
+            const {done,value} = await reader.read();
+            if(done){
+                break;
+            }
+        
+            const chunk = decoder.decode(value);
+            buffer += chunk;
+        
+            let boundary = buffer.lastIndexOf("\n");
+            if (boundary === -1) continue;
+        
+            let text = buffer.substring(0, boundary);
+            buffer = buffer.substring(boundary + 1);
+        
+            const lines = text.split("\n");
+            const parsedLines = lines
+              .map((line) => line.replace(/^data: /, "").trim()) // Remove the "data: " prefix
+              .filter((line) => line !== "" && line !== "[DONE]") // Remove empty lines and "[DONE]"
+              .map((line) => JSON.parse(line)); // Parse the JSON string
+        
+              for (const parsedLine of parsedLines) {
+                const { choices } = parsedLine;
+                const { delta } = choices[0];
+                const { content } = delta;
+                // Update the UI with the new content
+                if (content) {
+                  resultText += content;
+                  emitter.emit('assistantMessage',resultText)
+                }
+              }
+        }
+        
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
 
 const askToGPT = async (prompt: string) => {
     try {
@@ -27,10 +94,10 @@ const askToGPT = async (prompt: string) => {
             {
                 "role": "user",
                 "content": `${prompt}
-                 * The data should be in JSON array
-                 * Do not type any disclaimers,warnings. Just give the json array data.
-                 * Do not explain anything.
-                 * Every data must be different from each other.
+                * The data should be in JSON array
+                * Do not type any disclaimers,warnings. Just give the json array data.
+                * Do not explain anything.
+                * Every data must be different from each other.
                 `
             }
             ]
@@ -93,7 +160,7 @@ export const createGuestsByAI = async (guests: Guest[]) => {
     if (error) throw new Error(error.message);
 };
 
-export const createCabinsByAI = async (cabins:Cabin[]) => {
+export const createCabinsByAI = async (cabins: Cabin[]) => {
     //generate a cabin image by DALL-E
     const images = await generateImagesByDALLE('a wonderful resort cabin with luxury goods and pool view in sunset');
 
@@ -139,7 +206,7 @@ export const createBooking = (cabin: Cabin, guest: Guest, settings: SettingsType
     }
     const numGuests = getRandomNumber(settings.maxGuestsPerBooking);
     const numNigths = getRandomNumber(settings.maxBookingLength);
-    const { startDate, endDate, created_at } = generateRandomDates(numNigths, settings.maxBookingLength);
+    const { startDate, endDate, created_at } = generateRandomDates(numNigths,getRandomNumber(settings.maxBookingLength));
     const cabinPrice = numNigths * (cabin.regularPrice - cabin.discount);
     const hasBreakfast = getRandomBoolean();
     const extrasPrice = hasBreakfast
@@ -231,5 +298,5 @@ export async function createTemplateBookings(settings: SettingsType) {
     if (updateCabinsError) throw new Error(updateCabinsError.message);
 
     const { error } = await supabaseClient.from("bookings").insert(newBookings);
-    if (error) console.log(error.message);
+    if (error) console.error(error.message);
 }

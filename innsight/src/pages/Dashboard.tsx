@@ -12,8 +12,7 @@ import { changeFilterMethod } from "~/redux/slices/filterSlice";
 import { ActiveStays } from "~/components/statistics/ActiveStays";
 import { useSearchParams } from 'react-router-dom'
 
-
-export const Dashboard = () => {
+const Dashboard = () => {
   const dispatch = useReduxDispatch();
   const { recentBookings, isBookingsLoading } = useRecentBookings();
   const { isStaysLoading, numDays, confirmedStays } = useRecentStays();
@@ -57,3 +56,5 @@ export const Dashboard = () => {
     </div >
   )
 }
+
+export default Dashboard;
