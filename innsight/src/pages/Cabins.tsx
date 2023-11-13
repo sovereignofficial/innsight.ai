@@ -40,7 +40,7 @@ const Cabins = () => {
     return (
       <tbody>
         {rows.map(({ cells }, indexA) => (
-          <tr className='dark:hover:bg-zinc-900/50 hover:bg-zinc-100' key={indexA}>
+          <tr className='dark:hover:bg-zinc-900/50 hover:bg-zinc-100 relative' key={indexA}>
             {cells.map((cell, indexB) => (
               <td className='border-t dark:border-zinc-800 border-zinc-300 p-1' key={indexB + 100}>{cell}</td>
             ))}

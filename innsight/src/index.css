@@ -68,7 +68,7 @@
     }
 
     .tools {
-        @apply w-40 absolute sm:right-0 lg:left-10 -bottom-24 rounded-lg dark:border-zinc-800 border bg-white shadow-lg dark:shadow-none dark:bg-zinc-950 p-1 z-30
+        @apply w-40 absolute sm:right-0 sm:top-0  rounded-lg dark:border-zinc-800 border bg-white shadow-lg dark:shadow-none dark:bg-zinc-950 p-1 z-50
     }
 
     .tool-option {

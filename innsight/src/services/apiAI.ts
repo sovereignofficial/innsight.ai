@@ -25,7 +25,7 @@ export const runGptStream = async (prompt: string) => {
             model: "gpt-3.5-turbo",
             messages: [{
                 "role": "system",
-                "content": "You're an helpful assistant of resort hotel management app. Your name is InnSight. You're supposed to be help hotel staff and manager with the data is given to you. Good Luck!"
+                "content": "You're an helpful assistan. Your name is InnSight."
             },
             {
                 "role": "user",
