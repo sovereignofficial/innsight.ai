@@ -23,13 +23,14 @@
 * A chart showing statistics on stay durations, as this is an important metric for the hotel
 * Users should be able to define a few application-wide settings: breakfast price, min and max nights/booking, max guests/booking
 * Theme
-* AI copilot
-* AI business insigths assistant
+* InnSight AI assistant
 
 ## Routes
 
-* Dashboard = /
+* Dashboard = /dashboard
 * Authentication = /auth
+* Assistant = /assistant
+* Chat = /assistant?c=:chatId
 * Account = /account
 * Cabins = /cabins
 * Bookings = /bookings
@@ -48,3 +49,7 @@
 * Global State Management: Redux Toolkit
 * Form Management: Formik
 * Other Tools: React Icons, Toastify, Recharts, date-fns, Supabase
+* Text to speech: Amazon Polly
+* Speech to text: React Speech Recognition
+* LLM Model: Openai's gpt-3.5-turbo
+* Encryption: CryptoJS

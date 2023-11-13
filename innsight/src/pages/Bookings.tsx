@@ -41,21 +41,19 @@ const Bookings: React.FC = () => {
     pageData?.map(item => {
       rows.push({
         cells: [
-          (<div>
-            <p >{item?.cabins?.name}</p>
-          </div>),
-          (<div>
+          (<p >{item?.cabins?.name}</p>),
+          (
             <div >
               <p>{item?.guests?.fullName}</p>
               <p className="text-zinc-500 sm:hidden lg">{item?.guests?.email}</p>
             </div>
-          </div>),
+          ),
           (<div>
             <p>{item.bookingDates?.bookingInfo.arrive} → {item.numNigths} nights stay </p>
             <p className="text-zinc-500">{item.bookingDates?.formattedStartDate} - {item.bookingDates?.formattedEndDate}</p>
           </div>),
-          (<div><span className={`px-3 py-1 uppercase sm:text-xs lg:text-sm rounded-full ${setStatusStyle(item)}`}>{item.status}</span></div>),
-          (<p>${item.totalPrice}</p>),
+          (<span className={`px-3 py-1 uppercase sm:text-xs lg:text-sm rounded-full ${setStatusStyle(item)}`}>{item.status}</span>),
+          (<p className="font-bold">${item.totalPrice}</p>),
           (<RowTools>
             <ToolOption onClick={() => redirectToBookingDetails(item.id!)}><AiOutlineEye /> <p>See Details</p></ToolOption>
             {item.status === BookingStates.CHECKEDIN

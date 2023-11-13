@@ -12,7 +12,7 @@ export const FormInput: React.FC<InputProps> = memo( ({
                 htmlFor={name}>{label}</label>
             <div className='w-full'>
                 <input className='form-input w-full'
-                    name={name} type={type} value={values[name]} placeholder={placeholder} min={min} maxLength={maxLength} onChange={handleChange} />
+                   id={name} name={name} type={type} value={values[name]} placeholder={placeholder} min={min} maxLength={maxLength} onChange={handleChange} />
             </div>
         </div>
     )

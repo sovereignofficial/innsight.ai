@@ -22,6 +22,8 @@ export const InnSightAssistant: React.FC = () => {
   const { isMessagesLoading, isChatsLoading, chatHistory } = useChats();
   const { user } = useUser();
   const { detectIfUserSendMessage } = useAssistantMessages();
+  const currentChatIndex = chatHistory?.findIndex(item => item.id == currentChat?.id)!
+  const chatHistoryItem = currentChatIndex < 2 ? chatHistory![currentChatIndex + 1] : chatHistory && chatHistory[0];
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -43,42 +45,43 @@ export const InnSightAssistant: React.FC = () => {
 
   return (
     <Chat >
-      <div className="col-span-2 space-y-4 p-4 dark:bg-secondary rounded-tl-xl rounded-bl-xl">
-        <h3 className="text-black dark:text-white">History</h3>
-        <HistoryList chatHistory={chatHistory!} isChatsLoading={isChatsLoading} />
-      </div>
-      <div className="col-span-10 h-full w-full bg-gradient-to-tr  dark:from-black to-primary-600 dark:to-primary-900 rounded-tr-xl rounded-br-xl ">
+      <div className="h-full w-full bg-gradient-to-tr  dark:from-black to-primary-600 dark:to-primary-900 rounded-xl max-w-screen ">
         <ChatFeed>
-          <h2>{currentChat?.title}</h2>
-          <React.Fragment>
-            {
-              isMessagesLoading
-                ? <LoadingPage />
-                : (
-                  messages!?.length > 0 ?
-                    messages!?.map((message, index) => (
-                      <>
-                        {message?.sendBy?.email !== user?.email ? <OthersMessage key={index} message={message} /> : <UserMessage key={index} message={message} />}
-                      </>
-                    ))
-                    : (
-                      <div className="dark:text-white text-black space-y-3 flex flex-col justify-center items-center">
-                        <Logo size={40}/>
-                        <h2>Welcome to InnSight AI assistant!</h2>
-                        {
-                          chatHistory && chatHistory.length > 0 
-                          ?(<div>You can either continue the conversation with <HistoryListItem chat={chatHistory[0]}/> or start a new conversation by sending a new message.</div>)
-                          :(<p>You can initiate a new conversation by sending the first message!</p>)
-                        }
-                      </div>
-                    )
+          {
+            isMessagesLoading
+              ? <LoadingPage />
+              : (
+                messages!?.length > 0 ? (
+                  <div className="space-y-3">
+                    <h2>Chat #{currentChat?.id}</h2>
+                    <div>You may want to resume the conversation with {chatHistoryItem ? <HistoryListItem chat={chatHistoryItem} /> : 'No more chat found.'}  </div>
+                    {
+                      messages!?.map((message, index) => (
+                        <>
+                          {message?.sendBy?.email !== user?.email ? <OthersMessage key={index+5} message={message} /> : <UserMessage key={index+20} message={message} />}
+                        </>
+                      ))
+                    }
+                  </div>
                 )
-            }
-          </React.Fragment>
+                  : (
+                    <div className="dark:text-white text-black space-y-3 flex flex-col justify-center items-center">
+                      <Logo size={40} />
+                      <h2>Welcome to InnSight AI assistant!</h2>
+                      {
+                        chatHistory && chatHistory.length > 0
+                          ? (<div>You can either continue the conversation with <HistoryList chatHistory={chatHistory!.slice(0, 2)} isChatsLoading={isChatsLoading} /> or start a new conversation by sending a new message.</div>)
+                          : (<p>You can initiate a new conversation by sending the first message!</p>)
+                      }
+                    </div>
+                  )
+
+              )
+          }
         </ChatFeed>
         <ChatTools>
           {chatTools.map((tool, index) => (
-            <ChatToolItem key={index} className={`${index === 0 ? 'col-span-10' : 'col-span-1'}`} >{tool}</ChatToolItem>
+            <ChatToolItem key={index} className={`${index === 0 ? 'sm:col-span-9 md:col-span-10' : 'sm:col-span-3 md:col-span-1'}`} >{tool}</ChatToolItem>
           ))}
         </ChatTools>
       </div>

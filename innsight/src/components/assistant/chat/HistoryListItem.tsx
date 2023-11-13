@@ -5,7 +5,7 @@ import { encryptChatURI } from "~/utils/helpers";
 export const HistoryListItem:React.FC<{chat:Chat}> = ({chat}) => {
     const navigate = useNavigate();
   return (
-    <button onClick={() => chat.id! && navigateToEncryptedChatUrl(chat.id,navigate)} className=" text-primary-500 hover:text-primary-400"
+    <button onClick={() => chat.id! && navigateToEncryptedChatUrl(chat.id,navigate)} className=" text-primary-500 hover:text-primary-400 "
     >{chat.title}</button>
   )
 }

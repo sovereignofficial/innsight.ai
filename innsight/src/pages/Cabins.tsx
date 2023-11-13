@@ -16,11 +16,11 @@ import { useCallback } from "react"
 
 const Cabins = () => {
 
-  const { isCabinsLoading, deleteFn, tableData, pages, currPage,cabins }
+  const { isCabinsLoading, deleteFn, tableData, pages, currPage, cabins }
     = useCabins()
 
   const { createNewCabinsByAI, isAICabinsLoading } = useGPT();
-  
+
   const pageDataToJSXRows = useCallback((pageData: Cabin[]) => {
     const rows: TableRow[] = [];
 
@@ -28,8 +28,10 @@ const Cabins = () => {
       rows.push({
         cells: [
           (<RowImage imageAddress={cabin.image} />),
-          cabin.name, (<p>Fits up for <strong>{cabin.maxCapacity}</strong> guests.</p>),
-          `$${cabin.regularPrice}`, (<p className="dark:text-green-300 text-green-500">${cabin.discount}</p>),
+          (<p>{cabin.name}</p>),
+          (<p>Fits up for <strong>{cabin.maxCapacity}</strong> guests.</p>),
+          (<p>${cabin.regularPrice}</p>),
+          (<p className="dark:text-green-300 text-green-500">${cabin.discount}</p>),
           (<RowTools>
             <ToolOption onClick={() => { }}><EditCabinModalForm cabin={cabin} /></ToolOption>
             <ToolOption onClick={() => deleteFn(cabin.id!)}><BiTrash /> Delete</ToolOption>
@@ -48,7 +50,7 @@ const Cabins = () => {
         ))}
       </tbody>
     )
-  },[pages,currPage])
+  }, [pages, currPage])
 
 
   return (
@@ -72,7 +74,7 @@ const Cabins = () => {
             ]} />
           </Filters>
           <AddCabinModalForm />
-          <Button text="Create cabins by GPT & DALL-E" type="default" isLoading={isAICabinsLoading} onClick={()=>createNewCabinsByAI(cabins!)} />
+          <Button text="Create cabins by GPT & DALL-E" type="default" isLoading={isAICabinsLoading} onClick={() => createNewCabinsByAI(cabins!)} />
         </div>
       </div>
 

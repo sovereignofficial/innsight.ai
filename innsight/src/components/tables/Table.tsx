@@ -19,9 +19,9 @@ const Table: TableComponent = ({ children, isLoading }) => {
     const [rows, setRows] = useState<TableRow[]>([]);
     return (
         <TableContext.Provider value={{ headers, rows, isLoading, setHeaders, setRows }}>
-            <div className="w-full sm:max-w-[370px] lg:max-w-full  rounded-xl dark:bg-secondary dark:shadow-none shadow-lg mx-auto relative p-1 ">
+            <div className="sm:w-[370px] md:w-full rounded-xl dark:bg-secondary dark:shadow-none shadow-lg mx-auto relative p-1 overflow-x-scroll ">
                 {isLoading && <LoadingPage />}
-                <table className='min-h-[400px] w-full table-auto'>
+                <table className='min-h-[400px] w-full table-auto '>
                     {children}
                 </table>
             </div>

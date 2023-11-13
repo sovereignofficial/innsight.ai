@@ -7,7 +7,7 @@ export const HistoryList: React.FC<{ isChatsLoading: boolean, chatHistory: Chat[
   
 
   return (
-    <ul className=" w-full h-full relative overflow-y-scroll">
+    <ul className=" w-full h-full flex flex-col items-center ">
       {isChatsLoading
         ? (<LoadingPage />)
         : (chatHistory.map((chat, index) => (

@@ -39,7 +39,7 @@ This repository contains the source code and documentation for a comprehensive h
    - Customizable theme options for a personalized user experience.
 
 8. **AI Assistants**
-   - Integrated AI copilot and AI business insights assistant to provide support and insights to users.
+   - InnSight AI chat assistant to provide support and insights to users.
 
 ### Installation
 
@@ -56,8 +56,17 @@ This repository contains the source code and documentation for a comprehensive h
     ```
 3. Create a .env file at the root folder of the app and then define your Supabase and OpenAI keys like this
     ```
-    VITE_OPENAI_KEY=your-openai-key
-    VITE_SUPABASE_KEY=your-supabase-key
+      VITE_SUPABASE_AI_USER_UID ='your-ai-user-id'
+      VITE_SUPABASE_AI_AVATAR='your-ai-user-avatar-url'
+
+
+      VITE_OPENAI_KEY='your-openai-api-key'
+      VITE_SUPABASE_KEY='your-supabase-key'
+      VITE_SUPABASE_SERVICE_KEY='your-supabase-service-key'
+      VITE_SECRET_KEY='any-secret-key-you-defined'
+
+      VITE_AMAZON_ACCESS_KEY_ID='your-iam-user-access-key'
+      VITE_AMAZON_SECRET_ACCESS_KEY='your-iam-user-secret-access-key'
     ```
 4. Start the app 
  ```
