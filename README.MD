@@ -67,6 +67,7 @@ This repository contains the source code and documentation for a comprehensive h
 
       VITE_AMAZON_ACCESS_KEY_ID='your-iam-user-access-key'
       VITE_AMAZON_SECRET_ACCESS_KEY='your-iam-user-secret-access-key'
+      VITE_AMAZON_REGION='your-iam-region'
     ```
 4. Start the app 
  ```
