@@ -21,7 +21,6 @@ export const SendMessageBtn: React.FC<SendMessageBtnInterface> = memo(({userData
             chatId: currentChat?.id!
         }
         dispatch(updateMessages([...messages,newMessage]));
-        console.warn("this message will be sent to the database",newMessage.message);
         saveMessageToDb(newMessage);
     }
 

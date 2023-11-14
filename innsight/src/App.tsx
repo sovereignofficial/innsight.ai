@@ -46,6 +46,7 @@ function App() {
     if (tablePath) {
       dispatch(changeFilterMethod('All'));
       dispatch(clearFilterData());
+      dispatch(resetTablePage());
     }
 
     if (assistantPath && !window.location.href.includes('?c=')) {
