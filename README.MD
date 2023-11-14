@@ -3,7 +3,12 @@
 Welcome to InnSight AI, your all-in-one solution for managing and optimizing your hotel business. InnSight AI is a powerful and intuitive application designed specifically for hotel employees, offering a range of features and tools to streamline your operations, enhance guest experiences, and boost your revenue.
 
 ### Overview
-This repository contains the source code and documentation for a comprehensive hotel management application designed for use by hotel employees. The application provides a range of features to streamline hotel operations and enhance the guest experience. 
+This repository contains the source code and documentation for a comprehensive hotel management application designed for use by hotel employees. The application provides a range of features to streamline hotel operations and enhance the guest experience.
+
+### [Live Demo](https://innsight-ai.vercel.app/)
+   Credentials to login:
+      Email address = admin@admin.com
+      Password = Admin123!
 
 ### Features
 1. **User Management**
